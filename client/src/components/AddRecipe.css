@@ -1,0 +1,19 @@
+.AddRecipe{
+    background-color: black;
+    color: white;
+    height: 100vh;
+ 
+}
+.AddRecipe .content{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    width: 40%;
+}
+.AddRecipe label{
+    display: block;
+}
+.AddRecipe .largeInput{
+    height: 60px;
+}

@@ -1,0 +1,68 @@
+.home{
+    padding: 30px 40px;
+    background-color: lightgray;
+    height: fit-content;
+}
+.home .logo{
+    height: 15%;
+    font-size:xx-large
+}
+.home .logo:hover{
+    cursor: pointer;
+}
+.home .search{
+    margin-top: 3%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+    color: white;
+    background-color: black;
+    height: 30px;
+    margin-bottom: 2%;
+    border-radius: 5px;
+
+}
+.home .addnew{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: max-content;
+    background-color: white;
+    padding: 5px 30px;
+    border-radius: 5px;
+
+}
+.addnew p{
+    margin: 0;
+}
+.home .all{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.home .all img{
+    width: 30vw;
+    height: 70vh;
+    
+}
+.home .each{
+    width: max-content;
+    width: 30vw;
+    height: 70vh;
+    position: relative;
+    margin-bottom: 10px;
+}
+.home .info{
+    position: absolute;
+    margin-top: 50%;
+    margin-left: -70%;
+    color: white;
+    font-size: large;
+    background-color: rgb(62, 60, 60);
+    padding: 5px 10px;
+    
+}
+.fa-pizza-slice{
+    align-self: center;
+    margin: 5px;
+}
