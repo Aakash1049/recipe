@@ -23,7 +23,7 @@ router.get("/reciepe",async(req,res)=>{
 })
 
 router.get("/search/:title",async (req,res)=>{
-    let pattern= new RegExp("^"+req.params.title)
+    let pattern= new RegExp(req.params.title)
     let recipes= await Reciepe.find({title:{$regex:pattern}})
     res.json({recipes})
 })

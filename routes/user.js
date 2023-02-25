@@ -28,7 +28,7 @@ router.post("/signin",async(req,res)=>{
     let user=await User.findOne({email:email})
     if(!user){
         return res.json({
-            error:"User does not exists"
+            error:"User does not exists, please register"
         })
     }
     if(password!==user.password){
@@ -37,7 +37,8 @@ router.post("/signin",async(req,res)=>{
         })
     }
     res.json({
-        message:"Sign in successfully"
+        message:"Sign in successfully",
+        user
     })
 })
 

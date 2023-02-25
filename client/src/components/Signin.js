@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Signin = () => {
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
+    const navigate=useNavigate()
     function signInhandler(e){
         e.preventDefault()
         fetch("/signin",{
@@ -16,20 +18,29 @@ const Signin = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
-        })
+            if(data.error){
+                return alert(data.error)
+            }
+                alert(data.message)
+                localStorage.setItem("user",JSON.stringify(data.user))
+
+                navigate("/home")
+            })
     }
 
   return (
-    <div>
-        <form>
+    <div style={{"border":"1px solid black", "width":"fit-content", "padding":"20px 40px","marginLeft":"auto","marginRight":"auto", marginTop:"150px"}}>
+        <h2>Login Page</h2>
+        <form style={{"display":"flex",flexDirection:"column","marginLeft":"auto","marginRight":"auto"}}>
         <label>Email:</label> 
         <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
+        <br></br>
         <label>Password:</label> 
         <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+        <br></br>
         <button onClick={(e)=>signInhandler(e)}>Submit</button>
         </form>
-
+    <Link to="/signup">Don't have an account? sign up here</Link>
     </div>
   )
 }

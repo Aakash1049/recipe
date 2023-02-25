@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "./Home.css"
 import "./Details.css"
@@ -10,6 +10,15 @@ const Details = ({ detail }) => {
     const [search, setSearch] = useState("")
     const navigate=useNavigate()
     let ingredients = detail.ingredients.split(",")
+    function homeHandler(){
+        navigate("/home")
+    }
+    let user=JSON.parse(localStorage.getItem("user"))
+    useEffect(() => {
+        if(user===null){
+            navigate("/")
+        }
+    }, [])
     function searchHandler(e) {
         //    setSearch(e.target.value)
         fetch(`/search/${e.toLowerCase()}`)
@@ -27,6 +36,9 @@ const Details = ({ detail }) => {
                 <div className='logo' onClick={()=>{navigate("/home")}}>
                     <i class="fa-solid fa-utensils"></i>  Recipe App
                 </div>
+                <div className='logout' style={{position:'absolute', right:"10%"}}>
+                <button onClick={()=>{localStorage.clear();navigate("/")}} style={{fontSize:"18px"}}>Log Out</button>
+            </div>
                 <input type="text" onChange={(e) => { setSearch(e.target.value); searchHandler(e.target.value) }} placeholder='search recipe by TITLE here' className='search' />
                 <br />
 

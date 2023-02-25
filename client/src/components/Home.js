@@ -7,8 +7,11 @@ const Home = ({detail, setDetail}) => {
     const [serachResults, setSearchResults] = useState([])
     const [search, setSearch]=useState("")
     const navigate=useNavigate()
+    let user=JSON.parse(localStorage.getItem("user"))
     useEffect(() => {
-      
+        if(user===null){
+            navigate("/")
+        }
         fetch("/reciepe")
             .then(res => res.json())
             .then(data => {
@@ -18,11 +21,10 @@ const Home = ({detail, setDetail}) => {
 
     function detailHandler(recipe){
         setDetail(recipe)
-        // navigate("/details")
-        console.log("here22")
         navigate("/details")
-        console.log("here24")
-
+    }
+    function homeHandler(){
+        navigate("/home")
     }
 
     function searchHandler(e){
@@ -35,9 +37,12 @@ const Home = ({detail, setDetail}) => {
             })
     }
     return (
-        <div className='home' onClick={()=>{navigate("/home")}} >
-            <div className='logo'>
+        <div className='home' >
+            <div className='logo' onClick={homeHandler}>
                 <i class="fa-solid fa-utensils"></i>  Recipe App
+            </div>
+            <div className='logout' style={{position:'absolute', right:"10%"}}>
+                <button onClick={()=>{localStorage.clear();navigate("/")}} style={{fontSize:"18px"}}>Log Out</button>
             </div>
             <input type="text" onChange={(e) => {setSearch(e.target.value) ;searchHandler(e.target.value) }} placeholder='search recipe by TITLE here' className='search' />
             <br />
