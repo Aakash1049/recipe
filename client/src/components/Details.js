@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import "./Home.css"
 import "./Details.css"
 
-const Details = ({ detail }) => {
+const Details = ({ detail,setDetail }) => {
     const [showInstruction, setShowInstruction] = useState(true)
     const [showIngredients, setShowIngredients] = useState(false)
     const [serachResults, setSearchResults] = useState([])
@@ -12,6 +12,14 @@ const Details = ({ detail }) => {
     let ingredients = detail.ingredients.split(",")
     function homeHandler(){
         navigate("/home")
+    }
+    useEffect(()=>{
+
+    },[detail])
+    function detailHandler(recipe){
+        search=""
+        setDetail(recipe)
+        navigate("/details")
     }
     let user=JSON.parse(localStorage.getItem("user"))
     useEffect(() => {
@@ -55,7 +63,7 @@ const Details = ({ detail }) => {
                         search.length !== 0 &&
                         serachResults.map((recipe) => {
                             return (
-                                <div className='each'>
+                                <div className='each'onClick={()=>detailHandler(recipe)}>
                                     <img src={recipe.image} />
 
                                     <span className='info'>

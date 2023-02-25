@@ -82,7 +82,7 @@ const Home = ({detail, setDetail}) => {
                     search.length!==0 &&
                     serachResults.map((recipe) => {
                         return (
-                            <div className='each'>
+                            <div onClick={()=>detailHandler(recipe)} className='each'>
                                 <img src={recipe.image} />
 
                                 <span className='info'>

@@ -14,6 +14,12 @@ app.use(user)
 
 const recieps=require("./routes/recieps")
 app.use(recieps)
+if (process.env.NODE_ENV === 'production') {
+    //*Set static folder up in production
+    app.use(express.static('client/build'));
+
+    app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'client', 'build','index.html')));
+  }
 
 app.listen(5000,()=>{
     console.log("server running")
@@ -22,21 +28,3 @@ app.listen(5000,()=>{
 
 
 
-/**
-"scripts": {
-    "start": "node index.js",
-    "server": "nodemon index.js",
-    "client": "npm start --prefix client",
-    "clientinstall": "npm install --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-  }
-  
-  if (process.env.NODE_ENV === 'production') {
-    //*Set static folder up in production
-    app.use(express.static('client/build'));
-
-    app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'client', 'build','index.html')));
-  }
-
- */

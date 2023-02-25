@@ -17,7 +17,7 @@ function App() {
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/home' element={<Home detail={detail} setDetail={setDetail}/>}/>
           <Route path='/add' element={<AddRecipe/>}/>
-          <Route path='/details' element={<Details detail={detail}/>}/>
+          <Route path='/details' element={<Details detail={detail} setDetail={setDetail}/>}/>
         </Routes>
      </BrowserRouter>
     </div>
